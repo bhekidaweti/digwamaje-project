@@ -12,4 +12,4 @@ python manage.py collectstatic --no-input
 python manage.py migrate
 
 #Attempt to load the superuser data
-python manage.py loaddata superuser.json
+#python manage.py loaddata superuser.json

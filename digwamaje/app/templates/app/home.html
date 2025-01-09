@@ -1,0 +1,39 @@
+{% extends 'app/layout.html' %}
+
+{% block title %}Home - Digwamaje Grave Services{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<div class="home-page">
+    <h2> Welcome to Digwamaje Grave Services </h2>
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static '/images/img5.jpg' %}" alt="Image 1">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static '/images/img14.jpg' %}" alt="Image 2">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static '/images/img15.jpg' %}" alt="Image 3">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static '/images/img16.jpg' %}" alt="Image 4">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static '/images/img17.jpg' %}" alt="Image 5">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+{% endblock %}

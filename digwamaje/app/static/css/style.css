@@ -1,0 +1,53 @@
+.menu, .footer {
+    background-color: goldenrod;
+    color: black;
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.thumbnail {
+    width: 150px;
+    height: 150px;
+    object-fit: cover; 
+    border-radius: 8px; 
+    margin: 5px;
+}
+
+.footer {
+    margin-top: 100px;
+}
+
+#header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.home-page {
+    text-align: center;
+    color: goldenrod;
+    margin: 20px auto;
+}
+
+.carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 300px; 
+    margin: 0 auto;
+    border: 2px solid goldenrod; 
+    border-radius: 8px; 
+    overflow: hidden;
+}
+
+.carousel-inner img {
+    width: 100%; 
+    height: auto;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    filter: invert(100%); 
+}

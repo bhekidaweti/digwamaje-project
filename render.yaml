@@ -17,9 +17,8 @@ services:
         source: /media/(.*)
         destination: /media/\1
       - type: rewrite
-      source: /(.*)
-      destination: /static\1
-        target: 8080
+        source: /(.*)
+        destination: /static\1
     envVars:
       - key: DATABASE_URL
         fromDatabase:

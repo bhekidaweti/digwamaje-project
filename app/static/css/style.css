@@ -81,3 +81,7 @@
     list-style: none;
     margin: 10px 0;
 }
+.contact-page ul li a {
+    text-decoration: none;
+    color: goldenrod;
+}

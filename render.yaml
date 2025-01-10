@@ -11,6 +11,15 @@ services:
     runtime: python
     buildCommand: "./build.sh"
     startCommand: "python -m gunicorn digwamaje.asgi:application -k uvicorn.workers.UvicornWorker"
+    staticPublishPath: staticfiles
+    routes:
+      - type: rewrite
+        source: /media/(.*)
+        destination: /media/\1
+      - type: rewrite
+      source: /(.*)
+      destination: /static\1
+        target: 8080
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -20,3 +29,4 @@ services:
         generateValue: true
       - key: WEB_CONCURRENCY
         value: 4
+  

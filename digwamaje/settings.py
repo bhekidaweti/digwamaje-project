@@ -132,6 +132,7 @@ if not DEBUG:
     #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     #Attempting to use cloudFlair
     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 #STATICFILES_STORAGE = 'app.storages.StaticStorage' 
 #DEFAULT_FILE_STORAGE = 'app.storages.MediaStorage'
 else:

@@ -150,7 +150,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "your-access-key-id")
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "your-secret-access-key")  
 AWS_STORAGE_BUCKET_NAME = "digwamaje"  # Replace with your R2 bucket name
-AWS_S3_ENDPOINT_URL = "https://17fbbc385f2301d18ea3b7f26e677f08.r2.cloudflarestorage.com"  # Replace with your API URL
+AWS_S3_ENDPOINT_URL = "https://pub-6edbe04de0034f678137b7abbf947d1e.r2.dev"  # Replace with your API URL
 
 # Optional settings for S3
 AWS_QUERYSTRING_AUTH = False  # Disable query parameter authentication (recommended for public files)

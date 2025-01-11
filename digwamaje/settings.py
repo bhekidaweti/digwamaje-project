@@ -129,11 +129,31 @@ if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
     # and renames the files with unique names for each version to support long-term caching
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    #Attempting to use cloudFlair
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#STATICFILES_STORAGE = 'app.storages.StaticStorage' 
+#DEFAULT_FILE_STORAGE = 'app.storages.MediaStorage'
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 
 # Media settings
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Static and Media Configuration
+
+# R2 Configuration
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "your-access-key-id")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "your-secret-access-key")  
+AWS_STORAGE_BUCKET_NAME = "digwamaje"  # Replace with your R2 bucket name
+AWS_S3_ENDPOINT_URL = "https://17fbbc385f2301d18ea3b7f26e677f08.r2.cloudflarestorage.com"  # Replace with your API URL
+
+# Optional settings for S3
+AWS_QUERYSTRING_AUTH = False  # Disable query parameter authentication (recommended for public files)
+AWS_S3_FILE_OVERWRITE = False  # Prevent overwriting files with the same name
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

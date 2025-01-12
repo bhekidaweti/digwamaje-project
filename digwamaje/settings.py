@@ -125,31 +125,27 @@ USE_TZ = True
 # Here, they well be accessible at your-domain.onrender.com/static/... or yourcustomdomain.com/static/...
 STATIC_URL = '/static/'
 
-# This production code might break development mode, so we check whether we're in DEBUG mode
-# If we are, we'll use the local filesystem path for static files
 if not DEBUG:
-    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    #Attempting to use cloudFlair
-    MEDIA_URL = "https://pub-6edbe04de0034f678137b7abbf947d1e.r2.dev/"
-    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
-    # and renames the files with unique names for each version to support long-term caching
-    #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    #Attempting to use cloudFlair
-    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    # Static files configuration
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+    # Media files (uploaded files) configuration
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-#STATICFILES_STORAGE = 'app.storages.StaticStorage' 
-#DEFAULT_FILE_STORAGE = 'app.storages.MediaStorage'
+    MEDIA_URL = "https://pub-6edbe04de0034f678137b7abbf947d1e.r2.dev/"
+
 else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Development settings
     STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
     DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
     MEDIA_URL = '/media/'
 
-# Media settings
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# Static and Media Configuration
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "your-access-key-id")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "your-secret-access-key")
+AWS_STORAGE_BUCKET_NAME = "digwamaje"
+AWS_S3_ENDPOINT_URL = "https://pub-6edbe04de0034f678137b7abbf947d1e.r2.dev"
+AWS_QUERYSTRING_AUTH = False
+AWS_S3_FILE_OVERWRITE = False
 
 # R2 Configuration
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "your-access-key-id")

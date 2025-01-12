@@ -126,18 +126,16 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 if not DEBUG:
-    # Static files configuration
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-    # Media files (uploaded files) configuration
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     MEDIA_URL = "https://pub-6edbe04de0034f678137b7abbf947d1e.r2.dev/"
-
 else:
-    # Development settings
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
     DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
     MEDIA_URL = '/media/'
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "your-access-key-id")

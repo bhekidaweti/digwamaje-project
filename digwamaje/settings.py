@@ -130,7 +130,7 @@ USE_TZ = True
 
 # This setting informs Django of the URI path from which your static files will be served to users
 # Here, they well be accessible at your-domain.onrender.com/static/... or yourcustomdomain.com/static/...
-STATIC_URL = '/static/'
+STATIC_URL = 'https://17fbbc385f2301d18ea3b7f26e677f08.r2.cloudflarestorage.com/digwamaje'
 
 AWS_ACCESS_KEY_ID =config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY =config('AWS_SECRET_ACCESS_KEY')

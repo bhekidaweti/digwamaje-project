@@ -13,11 +13,17 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import dj_database_url
 from dotenv import load_dotenv
-import os
+import os, sys
 from storages.backends.s3boto3 import S3Boto3Storage
+from decouple import config
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Add this line if it isn't already in your settings.py
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Quick-start development settings - unsuitable for production
@@ -42,7 +48,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'storages',
     'corsheaders',
     'app'
 ]
@@ -127,37 +132,20 @@ USE_TZ = True
 # Here, they well be accessible at your-domain.onrender.com/static/... or yourcustomdomain.com/static/...
 STATIC_URL = '/static/'
 
-if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    MEDIA_URL = "https://pub-6edbe04de0034f678137b7abbf947d1e.r2.dev/"
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-    DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
-    MEDIA_URL = '/media/'
+AWS_ACCESS_KEY_ID =config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY =config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME =config('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_ENDPOINT_URL =config('AWS_S3_ENDPOINT_URL')
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "your-access-key-id")
-AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "your-secret-access-key")
-AWS_STORAGE_BUCKET_NAME = "digwamaje"
-AWS_S3_ENDPOINT_URL = "https://pub-6edbe04de0034f678137b7abbf947d1e.r2.dev"
-AWS_QUERYSTRING_AUTH = False
-AWS_S3_FILE_OVERWRITE = False
+# Django cofig for staticfiles and media files
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-# R2 Configuration
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID", "your-access-key-id")
-AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY", "your-secret-access-key")  
-AWS_STORAGE_BUCKET_NAME = "digwamaje"  # Replace with your R2 bucket name
-AWS_S3_ENDPOINT_URL = "https://pub-6edbe04de0034f678137b7abbf947d1e.r2.dev"  # Replace with your API URL
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-# Optional settings for S3
-AWS_QUERYSTRING_AUTH = False  # Disable query parameter authentication (recommended for public files)
-AWS_S3_FILE_OVERWRITE = False  # Prevent overwriting files with the same name
+STATICFILES_DIRS = []
 
-# Default primary key field type
+# Default primary key field type digwamaje\helpers\cloudflare\storages.py
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

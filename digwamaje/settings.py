@@ -149,6 +149,7 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 ########
 
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.r2.cloudflarestorage.com"  # This could be needed
+AWS_S3_ADDRESSING_STYLE = "virtual"  # Explicitly use virtual-hosted-style URLs
 
 MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.r2.cloudflarestorage.com/media/'
 

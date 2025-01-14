@@ -38,6 +38,15 @@ DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
 ALLOWED_HOSTS = ['*']
 
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+CORS_ALLOWED_ORIGINS = [
+    "https://mysite-0271.onrender.com",
+]
+CORS_ALLOW_ALL_ORIGINS = False
+
+
 
 # Application definition
 
